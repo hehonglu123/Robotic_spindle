@@ -40,7 +40,7 @@ class tormach(object):
 		self.lower_limit=np.radians([-170.,-100.,-120.,-150.,-120.,-360.])
 		self.joint_vel_limit=np.radians([150,112.5,150,204.5,225,360])
 		self.joint_acc_limit=np.array([-1,-1,-1,42.49102688076435,36.84030926197994,50.45298947544431])
-		self.robot_def=Robot(self.H,self.P,self.joint_type,joint_lower_limit = self.lower_limit, joint_upper_limit = self.upper_limit, joint_vel_limit=self.joint_vel_limit, R_tool=R_tool,p_tool=tcp_new)
+		self.robot_def=Robot(self.H,self.P,self.joint_type,joint_lower_limit = self.lower_limit, joint_upper_limit = self.upper_limit, joint_vel_limit=self.joint_vel_limit, R_tool=R_tool,p_tool=p_tool)
 
 		###acceleration table
 		if len(acc_dict_path)>0:
@@ -111,12 +111,20 @@ class Transform_all(object):
 
 
 def main():
-	robot=tormach()
-	p=np.array([1445.00688987, -248.17799722, 1037.37341832])
-	R=np.array([[-0.83395293, -0.1490643,  -0.53132131],
-				[ 0.17227772,  0.84437554, -0.50729709],
-				[ 0.52425461, -0.51459672, -0.678489  ]])
-	print(robot.inv(p,R,last_joints=[ 0.0859182,   0.09685281,  0.28419715,  2.56388261, -1.34470404, -3.0320356 ]))
+	angle=np.radians(25)
+	R_tool=Rx(angle)@Ry(np.pi)
+	print(R_tool)
+	p_tool=[25,100*np.sin(angle),-100*np.cos(angle)]
+	print(p_tool)
+	
+	H=np.eye(4)
+	H[:-1,-1]=p_tool
+	H[:3,:3]=R_tool
+
+	with open(r'../config/tcp.yaml', 'w') as file:
+		documents = yaml.dump({'H':H.tolist()}, file)
+
+
 	return
 
 if __name__ == '__main__':
