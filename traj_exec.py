@@ -7,8 +7,10 @@ sys.path.append('toolbox')
 from lambda_calc import *
 from robot_def import *
 
+
+time.sleep(5)
 #select dataset
-data_dir='data/line/'
+data_dir='data/wood/'
 #select TCP
 with open('config/tcp.yaml') as file:
     H_tcp = np.array(yaml.safe_load(file)['H'],dtype=np.float64)
@@ -42,7 +44,7 @@ c.command_mode = halt_mode
 time.sleep(0.1)
 c.command_mode = jog_mode
 
-c.jog_freespace(curve_js[0],np.ones(6),wait=False)
+c.jog_freespace(curve_js[0],np.ones(6),False)
 print('jog complete')
 
 

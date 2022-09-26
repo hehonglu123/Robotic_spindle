@@ -9,14 +9,13 @@ from qpsolvers import solve_qp
 sys.path.append('../../circular_Fit')
 
 sys.path.append('../../toolbox')
-from robots_def import *
+from robot_def import *
 from lambda_calc import *
-from blending import *
 from utils import *
 
 class lambda_opt(object):
 	###robot1 hold paint gun, robot2 hold part
-	def __init__(self,curve,curve_normal,robot1=abb6640(d=50),robot2=abb1200(),base2_R=np.eye(3),base2_p=np.zeros(3),steps=50,breakpoints=[],primitives=[],v_cmd=1000):
+	def __init__(self,curve,curve_normal,robot1=None,robot2=None,base2_R=np.eye(3),base2_p=np.zeros(3),steps=50,breakpoints=[],primitives=[],v_cmd=1000):
 
 		self.curve_original=curve
 		self.curve_normal_original=curve_normal
