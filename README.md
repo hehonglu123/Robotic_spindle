@@ -2,6 +2,10 @@
 
 Robotic Spindle Application using Tormach ZA06 Robot and ATI F/T Sensor
 
+## Workflow
+![](workflow.png)
+<img src="curve_pose.png" width="350">
+
 
 ## Trajectory Generation
 5DOF trajectory -> 6 DOF robot joint space trajectory algorithm comes from (https://github.com/hehonglu123/Motion-Primitive-Planning)
