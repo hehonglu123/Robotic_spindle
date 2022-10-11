@@ -80,7 +80,7 @@ def find_js_qp(robot,curve,curve_normal):
 
 def main():
 	#select dataset
-	data_dir='wood/'
+	data_dir='test/'
 	#select TCP
 	with open('../config/tcp.yaml') as file:
 	    H_tcp = np.array(yaml.safe_load(file)['H'],dtype=np.float64)
