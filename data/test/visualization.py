@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append('../../toolbox')
 from utils import *
 
 curve=np.loadtxt('wave_pts_final.txt')
