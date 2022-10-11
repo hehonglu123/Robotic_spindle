@@ -1,13 +1,23 @@
 import numpy as np
 import sys
+from pandas import *
 sys.path.append('../../toolbox')
 from utils import *
 
-curve=np.loadtxt('wave_pts_final.txt')
+# curve=np.loadtxt('wave_pts_final.txt')
+curve = read_csv('Curve_dense.csv',header=None).values
 
 plt.plot(curve[:,0],label='x')
 plt.plot(curve[:,1],label='y')
 plt.plot(curve[:,2],label='z')
+plt.title('position plot')
+plt.legend()
+plt.show()
+
+plt.plot(curve[:,3],label='x')
+plt.plot(curve[:,4],label='y')
+plt.plot(curve[:,5],label='z')
+plt.title('normal plot')
 plt.legend()
 plt.show()
 

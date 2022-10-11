@@ -17,7 +17,7 @@ with open('config/tcp.yaml') as file:
 robot=tormach(R_tool=H_tcp[:3,:3],p_tool=H_tcp[:-1,-1])
 
 ###index trajectory with time
-vd=10 		#mm/s
+vd=50 		#mm/s
 curve_js = read_csv(data_dir+'Curve_js.csv',header=None).values
 lam=calc_lam_js(curve_js,robot)
 
@@ -82,6 +82,8 @@ while (True):
 	except RR.StopIterationException:
 		print('completed')
 		break
+
+c.command_mode = halt_mode
 
 # plt.plot(time_stamps,joint_positions_history)
 # plt.plot(time_stamps,desired_position)

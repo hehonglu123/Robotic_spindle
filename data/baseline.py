@@ -17,7 +17,7 @@ def pose_opt(robot,curve,curve_normal):
 	C=np.average(curve,axis=0)
 	p=robot.fwd(np.zeros(len(robot.joint_vel_limit))).p
 	#arbitrary best center point for curve
-	p[0]=3*p[0]/4
+	p[0]=p[0]
 	p[-1]=p[-1]/2
 	###determine Vy by eig(cov)
 	curve_cov=np.cov(curve.T)
